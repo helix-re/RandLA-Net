@@ -17,6 +17,8 @@ RUN wget --quiet \
     && echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc \
     && echo "conda activate randlanet" >> ~/.bashrc
 
+EXPOSE 8888
+
 # Set the working directory:
 WORKDIR /RandLA-Net
 
@@ -27,7 +29,10 @@ RUN conda create -n randlanet python=3.5
 SHELL ["conda", "run", "-n", "randlanet", "/bin/bash", "-c"]
 
 # Install requirements:
-RUN pip install tensorflow-gpu==1.11
+RUN pip install \
+    tensorflow-gpu==1.11 \
+    pylint \
+    jupyterlab
 
 # Copy the repository:
 COPY . /RandLA-Net
