@@ -180,6 +180,17 @@ class DataProcessing:
         return xyz_aug, color_aug, idx_aug, label_aug
 
     @staticmethod
+    def data_aug_xyz(xyz, labels, idx, num_out):
+        num_in = len(xyz)
+        dup = np.random.choice(num_in, num_out - num_in)
+        xyz_dup = xyz[dup, ...]
+        xyz_aug = np.concatenate([xyz, xyz_dup], 0)
+        idx_dup = list(range(num_in)) + list(dup)
+        idx_aug = idx[idx_dup]
+        label_aug = labels[idx_dup]
+        return xyz_aug, idx_aug, label_aug
+
+    @staticmethod
     def shuffle_idx(x):
         # random shuffle the index
         idx = np.arange(len(x))
