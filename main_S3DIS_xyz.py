@@ -181,7 +181,7 @@ class S3DIS:
                 input_neighbors.append(neighbour_idx)
                 input_pools.append(pool_i)
                 input_up_samples.append(up_i)
-                batfch_xyz = sub_points
+                batch_xyz = sub_points
                 
                 input_list = input_points + input_neighbors + input_pools + input_up_samples
                 input_list += [features, batch_labels, batch_pc_idx, batch_cloud_idx]
